@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Exercices — Suites & Probabilités</title>
+<title>Exercices — Suites &amp; Probabilités</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
@@ -15,163 +15,192 @@
 <body>
 
 <header>
-  <div class="h-label">Première · Mathématiques · Suites & Probabilités</div>
+  <div class="h-label">Terminale · Mathématiques · Suites &amp; Probabilités</div>
   <h1>Exercices de <em>révision</em></h1>
-  <p class="sub">Suites définies par récurrence · Probabilités conditionnelles · Convergence</p>
+  <p class="sub">Suite trinôme · Suite homographique · Probabilités &amp; récurrence affine</p>
+  <button onclick="newSession()" style="margin-top:1.2rem;background:transparent;border:1px solid rgba(255,255,255,.35);color:#e8e9ef;padding:.45rem 1.3rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.1em;border-radius:3px;cursor:pointer;transition:all .2s;position:relative;z-index:1;"
+    onmouseover="this.style.background='rgba(255,255,255,.1)';this.style.borderColor='rgba(255,255,255,.6)'"
+    onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,.35)'">
+    🎲 Nouvel exercice
+  </button>
 </header>
 
 <nav>
-  <a href="#exo4" id="nav-4">Exercice 1 — Suite récurrente</a>
-  <a href="#exo1" id="nav-1">Exercice 2 — Probabilités</a>
-  <a href="#contact" id="nav-0">Contact - Prendre rendez-vous</a>
+  <a href="#exo4" id="nav-4">01 — Suite trinôme</a>
+  <a href="#exo1" id="nav-1">02 — Probabilités</a>
+  <a href="#exo3" id="nav-3">03 — Suite homographique</a>
+  <a href="#contact" id="nav-0">Contact</a>
 </nav>
 
 <main>
 
-<!-- ════════════════════════════════════════
-     EXERCICE 4 → SUITE RÉCURRENTE
-     ════════════════════════════════════════ -->
+<!-- ════════════════════════════════════
+     EXERCICE 1 — SUITE TRINÔME
+     ════════════════════════════════════ -->
 <section class="exercise" id="exo4">
   <div class="ex-number">Exercice 01</div>
   <div class="ex-title">Suite définie par récurrence non linéaire</div>
-  <div class="ex-subtitle">Changement de variable · Sens de variation · Limite</div>
+  <div class="ex-subtitle">Changement de variable · Sens de variation · Limite · Forme close</div>
 
-  <!-- ÉNONCÉ -->
   <div class="enonce">
     <div class="enonce-title">Énoncé</div>
     <p>On considère la suite \((u_n)\) définie sur \(\mathbb{N}\) par :</p>
-    <div class="math-block">\[u_0 = 2 \qquad \text{et} \qquad u_{n+1} = -\frac{1}{2}u_n^2 + 3u_n - \frac{3}{2}\]</div>
+    <div class="math-block" id="enonce-u-formula"></div>
 
     <div class="part-title">Partie A — Conjectures</div>
     <div class="questions">
-      <div class="question">
-        <span class="q-num">1.</span>
-        <span>Calculer les valeurs exactes, en fractions irréductibles, de \(u_1\) et \(u_2\).</span>
-      </div>
-      <div class="question">
-        <span class="q-num">2.</span>
-        <span>À l'aide de la calculatrice, donner une valeur approchée à \(10^{-5}\) près de \(u_3\) et \(u_4\).</span>
-      </div>
-      <div class="question">
-        <span class="q-num">3.</span>
-        <span>Conjecturer le sens de variation et la convergence de \((u_n)\). Représenter les 4 premiers termes sur le graphique.</span>
-      </div>
+      <div class="question"><span class="q-num">1.</span><span>Calculer les valeurs exactes, en fractions irréductibles, de \(u_1\) et \(u_2\).</span></div>
+      <div class="question"><span class="q-num">2.</span><span>Donner une valeur approchée à \(10^{-5}\) près de \(u_3\) et \(u_4\).</span></div>
+      <div class="question"><span class="q-num">3.</span><span>Conjecturer le sens de variation et la convergence de \((u_n)\).</span></div>
     </div>
 
     <div class="part-title">Partie B — Validation</div>
-    <p>On considère la suite \((v_n)\) définie par \(v_n = u_n - 3\).</p>
+    <p id="enonce-u-vn"></p>
     <div class="questions">
-      <div class="question">
-        <span class="q-num">1.</span>
-        <span>Montrer que, pour tout entier naturel \(n\) : \(\displaystyle v_{n+1} = -\frac{1}{2}v_n^2\).</span>
+      <div class="question"><span class="q-num">1.</span><span>Montrer que, pour tout \(n \in \mathbb{N}\) : <span id="enonce-u-vrel"></span>.</span></div>
+      <div class="question"><span class="q-num">2.</span><span>On admet que \(-1 \le v_n \le 0\) pour tout \(n\).</span></div>
+      <div class="q-sub question"><span class="q-num">a.</span><span>Démontrer que \(v_{n+1} - v_n = -v_n\!\left(\tfrac{1}{2}v_n + 1\right)\).</span></div>
+      <div class="q-sub question"><span class="q-num">b.</span><span>En déduire le sens de variation de \((v_n)\).</span></div>
+      <div class="question"><span class="q-num">3.</span><span id="enonce-u-limite"></span></div>
+      <div class="question"><span class="q-num">4.</span><span>Les conjectures de la Partie A sont-elles validées ?</span></div>
+    </div>
+
+    <div class="part-title">Partie C — Forme close</div>
+
+    <!-- ╔══════════════════════════════════════════════╗ -->
+    <!-- ║  ENCADRÉ : INTRODUCTION DU LOGARITHME       ║ -->
+    <!-- ╚══════════════════════════════════════════════╝ -->
+    <div style="background:#fffbf0;border:1.5px solid #b8860b;border-radius:4px;padding:1.2rem 1.4rem;margin:1rem 0 1.2rem;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#b8860b;margin-bottom:.6rem;">
+        📘 Pour aller plus loin — La fonction logarithme (Terminale)
       </div>
-      <div class="question">
-        <span class="q-num">2.</span>
-        <span>On admet que, pour tout \(n\), \(-1 \le v_n \le 0\).</span>
+      <p style="font-size:.92rem;margin-bottom:.6rem;">
+        En Terminale, vous étudierez la <strong>fonction logarithme népérien</strong>, notée \(\ln\), définie comme la réciproque de la fonction exponentielle.
+        Pour la suite de cet exercice, on admet que cette fonction existe et vérifie les propriétés suivantes :
+      </p>
+      <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;">
+        <li style="padding:.25rem 0 .25rem 1.2rem;position:relative;"><span style="position:absolute;left:0;color:#b8860b;">—</span> Elle est définie sur \(\,]0\,;\,+\infty[\,\) et à valeurs dans \(\mathbb{R}\).</li>
+        <li style="padding:.25rem 0 .25rem 1.2rem;position:relative;"><span style="position:absolute;left:0;color:#b8860b;">—</span> Elle est <em>strictement croissante</em> et vérifie \(\ln(1) = 0\).</li>
+        <li style="padding:.25rem 0 .25rem 1.2rem;position:relative;"><span style="position:absolute;left:0;color:#b8860b;">—</span> <strong>Propriété fondamentale :</strong> pour tous réels \(a > 0\) et \(b > 0\) : \(\ln(ab) = \ln(a) + \ln(b)\).</li>
+        <li style="padding:.25rem 0 .25rem 1.2rem;position:relative;"><span style="position:absolute;left:0;color:#b8860b;">—</span> <strong>Corollaire :</strong> pour tout réel \(a > 0\) et tout entier \(n\) : \(\ln(a^n) = n\ln(a)\).</li>
+        <li style="padding:.25rem 0 .25rem 1.2rem;position:relative;"><span style="position:absolute;left:0;color:#b8860b;">—</span> En particulier : \(\ln\!\left(\dfrac{1}{2}\right) = -\ln 2 < 0\).</li>
+      </ul>
+    </div>
+
+    <p>On pose, pour tout \(n \in \mathbb{N}\) : \(w_n = \ln(-v_n)\) (licite car \(v_n \in [-1\,;\,0[\)).</p>
+    <div class="questions">
+      <div class="question"><span class="q-num">1.</span><span>Calculer \(w_0\).</span></div>
+      <div class="question"><span class="q-num">2.</span><span>Montrer que \(w_{n+1} = 2w_n - \ln 2\).</span></div>
+      <div class="question"><span class="q-num">3.</span><span>On pose \(t_n = w_n - \ln 2\). Montrer que \((t_n)\) est géométrique, préciser raison et premier terme.</span></div>
+      <div class="question"><span class="q-num">4.</span><span>En déduire \(w_n\) puis \(v_n\) en fonction de \(n\).</span></div>
+      <div class="question"><span class="q-num">5.</span><span>Donner la <strong>forme close</strong> de \(u_n\) et vérifier avec \(u_1\) et \(u_2\).</span></div>
+      <div class="question"><span class="q-num">6.</span><span>Compléter la fonction Python <code>u_close(n)</code> et comparer avec la récurrence.</span></div>
+    </div>
+
+    <div class="ced-wrap">
+      <div class="ced-bar">
+        <span class="ttl">Python — forme close (à compléter)</span>
+        <button class="run" onclick="runCode('py-close','out-close')">▶ Exécuter</button>
+        <button onclick="dlCode('py-close','forme_close.py')">⬇ .py</button>
       </div>
-      <div class="q-sub question">
-        <span class="q-num">a.</span>
-        <span>Démontrer que : \(v_{n+1} - v_n = -v_n\!\left(\tfrac{1}{2}v_n + 1\right)\)</span>
-      </div>
-      <div class="q-sub question">
-        <span class="q-num">b.</span>
-        <span>En déduire le sens de variation de \((v_n)\).</span>
-      </div>
-      <div class="question">
-        <span class="q-num">3.</span>
-        <span>On note \(l\) la limite de \((v_n)\). On admet que \(l \in [-1\,;\,0]\) et que \(l = -\tfrac{1}{2}l^2\). Déterminer la valeur de \(l\).</span>
-      </div>
-      <div class="question">
-        <span class="q-num">4.</span>
-        <span>Les conjectures faites en Partie A sont-elles validées ?</span>
-      </div>
+      <textarea class="ced" id="py-close" spellcheck="false"></textarea>
+      <div class="console idle" id="out-close">Complétez u_close(n) puis cliquez sur ▶ Exécuter</div>
     </div>
   </div>
 
-  <!-- BOUTON CORRECTION -->
   <button class="corr-toggle-btn" onclick="toggleCorr('c4')">
     <span class="arrow">▶</span> Voir la correction complète
   </button>
 
-  <!-- CORRECTION -->
   <div class="correction" id="c4">
     <div class="correction-title">✦ Correction détaillée</div>
 
     <div class="part-title" style="font-size:.95rem;margin-top:.5rem">Partie A</div>
-
     <div class="step">
-      <div class="step-label">Question 1 — Calcul de u₁ et u₂</div>
-      <p>On applique la formule de récurrence avec \(u_0 = 2\) :</p>
-      <div class="math-block">\[u_1 = -\frac{1}{2}(2)^2 + 3(2) - \frac{3}{2} = -2 + 6 - \frac{3}{2} = 4 - \frac{3}{2} = \frac{5}{2}\]</div>
-      <div class="result-box">u₁ = 5/2</div>
-      <p>Puis avec \(u_1 = \frac{5}{2}\) :</p>
-      <div class="math-block">\[u_2 = -\frac{1}{2}\!\left(\frac{5}{2}\right)^{\!2} + 3\cdot\frac{5}{2} - \frac{3}{2} = -\frac{25}{8} + \frac{15}{2} - \frac{3}{2} = -\frac{25}{8} + \frac{60}{8} - \frac{12}{8} = \frac{23}{8}\]</div>
-      <div class="result-box">u₂ = 23/8</div>
+      <div class="step-label">Question 1 — u₁ et u₂</div>
+      <div class="math-block" id="corr-u1-calc"></div>
+      <div class="result-box" id="corr-u1-result"></div>
+      <div class="math-block" id="corr-u2-calc"></div>
+      <div class="result-box" id="corr-u2-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 2 — Valeurs approchées de u₃ et u₄</div>
-      <p>À partir de \(u_2 = \frac{23}{8} = 2{,}875\) :</p>
-      <div class="math-block">\[u_3 = -\frac{1}{2}(2{,}875)^2 + 3(2{,}875) - 1{,}5 \approx -4{,}128\,125 + 8{,}625 - 1{,}5 \approx 2{,}99688\]</div>
-      <div class="math-block">\[u_4 \approx -\frac{1}{2}(2{,}99688)^2 + 3(2{,}99688) - 1{,}5 \approx 2{,}99999\]</div>
-      <div class="result-box">u₃ ≈ 2,99688 &nbsp;·&nbsp; u₄ ≈ 2,99999</div>
+      <div class="step-label">Question 2 — u₃ et u₄</div>
+      <div class="result-box" id="corr-u3"></div>
     </div>
-
     <div class="step">
       <div class="step-label">Question 3 — Conjecture</div>
-      <p>On observe : \(u_0 = 2 < u_1 = 2{,}5 < u_2 = 2{,}875 < u_3 \approx 2{,}997 < u_4 \approx 3\).</p>
-      <p><strong>Conjecture :</strong> la suite \((u_n)\) est <em>croissante</em> et converge vers <em>3</em>.</p>
+      <p id="corr-conjecture"></p>
+      <p id="corr-conjecture-limit"></p>
       <canvas id="canvas-u" height="220"></canvas>
     </div>
 
     <div class="part-title" style="font-size:.95rem">Partie B</div>
-
     <div class="step">
-      <div class="step-label">Question 1 — Expression de v_{n+1}</div>
-      <p>Par définition \(v_n = u_n - 3\), donc \(u_n = v_n + 3\). On calcule \(u_{n+1}\) :</p>
-      <div class="math-block">\[\begin{aligned}v_{n+1} &= u_{n+1} - 3 = -\tfrac{1}{2}u_n^2 + 3u_n - \tfrac{3}{2} - 3\\[4pt]&= -\tfrac{1}{2}(v_n+3)^2 + 3(v_n+3) - \tfrac{9}{2}\\[4pt]&= -\tfrac{1}{2}\!\left(v_n^2 + 6v_n + 9\right) + 3v_n + 9 - \tfrac{9}{2}\\[4pt]&= -\tfrac{1}{2}v_n^2 - 3v_n - \tfrac{9}{2} + 3v_n + 9 - \tfrac{9}{2}\\[4pt]&= -\tfrac{1}{2}v_n^2\end{aligned}\]</div>
+      <div class="step-label">Question 1 — v_{n+1} = −½v²_n</div>
+      <div class="math-block" id="corr-vn-b1"></div>
       <div class="result-box">v_{n+1} = −½ v²_n &nbsp; ✓</div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 2a — Signe de v_{n+1} − v_n</div>
-      <p>On écrit :</p>
-      <div class="math-block">\[v_{n+1} - v_n = -\frac{1}{2}v_n^2 - v_n = -v_n\!\left(\frac{1}{2}v_n + 1\right)\]</div>
+      <div class="step-label">Question 2a — Factorisation</div>
+      <div class="math-block">\[v_{n+1} - v_n = -\tfrac{1}{2}v_n^2 - v_n = -v_n\!\left(\tfrac{1}{2}v_n + 1\right)\]</div>
       <div class="result-box">v_{n+1} − v_n = −v_n(½v_n + 1) &nbsp; ✓</div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 2b — Sens de variation de (v_n)</div>
-      <p>On suppose \(-1 \le v_n \le 0\). Alors :</p>
-      <p>• \(-v_n \ge 0\) (car \(v_n \le 0\))</p>
-      <p>• \(\frac{1}{2}v_n + 1 \ge \frac{1}{2}(-1)+1 = \frac{1}{2} > 0\)</p>
-      <p>Donc le produit \(-v_n\!\left(\tfrac{1}{2}v_n+1\right) \ge 0\), soit \(v_{n+1} - v_n \ge 0\).</p>
-      <div class="result-box">La suite (v_n) est croissante.</div>
-      <p>Comme \(v_n = u_n - 3\), la suite \((u_n)\) est également <strong>croissante</strong>.</p>
+      <div class="step-label">Question 2b — Sens de variation</div>
+      <div id="corr-vn-b2b"></div>
+      <div class="result-box">La suite (v_n) est croissante, donc (u_n) aussi.</div>
+    </div>
+    <div class="step">
+      <div class="step-label">Question 3 — Limite</div>
+      <div id="corr-vn-limit"></div>
+      <div class="result-box" id="corr-vn-limit-result"></div>
+    </div>
+    <div class="step">
+      <div class="step-label">Question 4 — Validation</div>
+      <div id="corr-validation"></div>
     </div>
 
+    <div class="part-title" style="font-size:.95rem">Partie C — Forme close</div>
     <div class="step">
-      <div class="step-label">Question 3 — Détermination de la limite l</div>
-      <p>On résout \(l = -\frac{1}{2}l^2\) avec \(l \in [-1\,;\,0]\) :</p>
-      <div class="math-block">\[\frac{1}{2}l^2 + l = 0 \implies l\!\left(\frac{l}{2}+1\right) = 0\]</div>
-      <p>Donc \(l = 0\) ou \(l = -2\). Seul \(l = 0\) appartient à \([-1\,;\,0]\).</p>
-      <div class="result-box">lim v_n = 0 &nbsp;⟹&nbsp; lim u_n = 3</div>
+      <div class="step-label">Question 1 — w₀</div>
+      <p id="corr-w0"></p>
+      <div class="result-box">w₀ = 0</div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 4 — Validation des conjectures</div>
-      <p>✓ La suite \((u_n)\) est bien <strong>croissante</strong> (puisque \((v_n)\) est croissante).</p>
-      <p>✓ La suite \((u_n)\) converge bien vers <strong>3</strong>.</p>
-      <p>Les deux conjectures de la Partie A sont donc <strong>validées</strong>.</p>
+      <div class="step-label">Question 2 — Relation w_{n+1} = 2w_n − ln 2</div>
+      <div class="math-block">\[\begin{aligned}w_{n+1} &= \ln(-v_{n+1}) = \ln\!\left(\tfrac{1}{2}(-v_n)^2\right) = \ln\!\left(\tfrac{1}{2}\right) + 2\ln(-v_n) = -\ln 2 + 2w_n\end{aligned}\]</div>
+      <div class="result-box">w_{n+1} = 2w_n − ln 2 &nbsp; ✓</div>
+    </div>
+    <div class="step">
+      <div class="step-label">Question 3 — Suite géométrique (t_n)</div>
+      <div class="math-block">\[t_{n+1} = 2w_n - 2\ln 2 = 2(w_n - \ln 2) = 2\,t_n \qquad t_0 = 0 - \ln 2 = -\ln 2\]</div>
+      <div class="result-box">(t_n) géométrique, raison 2, t₀ = −ln 2 &nbsp; ✓</div>
+    </div>
+    <div class="step">
+      <div class="step-label">Questions 4 &amp; 5 — Forme close</div>
+      <div class="math-block">\[t_n = -\ln 2\cdot 2^n \implies w_n = -(2^n-1)\ln 2 \implies v_n = -\frac{1}{2^{2^n-1}}\]</div>
+      <div class="math-block" id="corr-forme-close-box"></div>
+      <div id="corr-verif-close"></div>
+    </div>
+    <div class="step">
+      <div class="step-label">Question 6 — Python</div>
+      <div class="ced-wrap">
+        <div class="ced-bar">
+          <span class="ttl">Python — forme close vs récurrence (corrigé)</span>
+          <button class="run" onclick="runCode('py-close-corr','out-close-corr')">▶ Exécuter</button>
+          <button onclick="dlCode('py-close-corr','forme_close_corrige.py')">⬇ .py</button>
+        </div>
+        <textarea class="ced" id="py-close-corr" spellcheck="false"></textarea>
+        <div class="console idle" id="out-close-corr">Cliquez sur ▶ Exécuter</div>
+      </div>
     </div>
   </div>
 
-  <!-- OUTIL INTERACTIF -->
   <div class="interactive">
     <div class="interactive-title">⚙ Explorateur interactif — suite (u_n)</div>
     <div class="ctrl">
       <label>\(u_0 =\)</label>
-      <input type="number" id="u0-val" value="2" step="0.1" min="-1" max="5" oninput="drawU()"/>
+      <input type="number" id="u0-val" value="2" step="0.1" min="0" max="10" oninput="drawU()"/>
       <label>Termes :</label>
       <input type="number" id="u-n" value="12" min="4" max="30" style="width:65px" oninput="drawU()"/>
     </div>
@@ -182,200 +211,110 @@
 
 <hr class="divider"/>
 
-<!-- ════════════════════════════════════════
-     EXERCICE 1 → PROBABILITÉS + SUITE
-     ════════════════════════════════════════ -->
+<!-- ════════════════════════════════════
+     EXERCICE 2 — PROBABILITÉS
+     ════════════════════════════════════ -->
 <section class="exercise" id="exo1">
   <div class="ex-number">Exercice 02</div>
-  <div class="ex-title">Probabilités conditionnelles & Suite arithmético-géométrique</div>
-  <div class="ex-subtitle">Arbre de probabilités · Récurrence linéaire · Convergence</div>
+  <div class="ex-title">Probabilités conditionnelles &amp; Suite arithmético-géométrique</div>
+  <div class="ex-subtitle">Arbre de probabilités · Récurrence affine · Convergence</div>
 
   <div class="enonce">
     <div class="enonce-title">Énoncé</div>
-    <p>Léa passe une bonne partie de ses journées à jouer à un jeu vidéo. Elle s'intéresse aux chances de victoire de ses prochaines parties.</p>
-    <p>Elle estime que si elle vient de <strong>gagner</strong> une partie, elle gagne la suivante dans <strong>70 %</strong> des cas. Si elle vient de <strong>perdre</strong>, la probabilité qu'elle gagne la suivante est <strong>0,2</strong>.</p>
-    <p>Elle pense avoir autant de chances de gagner que de perdre la première partie. Ainsi \(g_1 = 0{,}5\).</p>
-    <p>Pour tout entier \(n \ge 1\), on note \(G_n\) : « Léa gagne la \(n\)-ième partie » et \(D_n\) : « Léa perd la \(n\)-ième partie ». On note \(g_n = P(G_n)\).</p>
-
+    <p>Léa joue à un jeu vidéo et s'intéresse à ses chances de victoire.</p>
+    <p>Si elle vient de <strong>gagner</strong>, elle gagne la suivante dans <strong><span id="enonce-g-pGG"></span></strong> des cas. Si elle vient de <strong>perdre</strong>, la probabilité de gagner la suivante est <strong><span id="enonce-g-pDG"></span></strong>. On a \(g_1 = 0{,}5\).</p>
+    <p>On note \(g_n = P(G_n)\), où \(G_n\) : « Léa gagne la \(n\)-ième partie ».</p>
     <div class="questions">
-      <div class="question"><span class="q-num">1.</span><span>Quelle est la valeur de la probabilité conditionnelle \(p_{G_1}(D_2)\) ?</span></div>
-      <div class="question"><span class="q-num">2.</span><span>Recopier et compléter l'arbre des probabilités pour les deux premières parties.</span></div>
+      <div class="question"><span class="q-num">1.</span><span>Quelle est la valeur de \(p_{G_1}(D_2)\) ?</span></div>
+      <div class="question"><span class="q-num">2.</span><span>Compléter l'arbre des probabilités pour les deux premières parties.</span></div>
       <div class="question"><span class="q-num">3.</span><span>Calculer \(g_2\).</span></div>
-      <div class="question"><span class="q-num">4.</span><span>Soit \(n\) un entier naturel non nul.</span></div>
-      <div class="q-sub question"><span class="q-num">a.</span><span>Compléter l'arbre des probabilités pour les \(n\)-ième et \((n+1)\)-ième parties.</span></div>
-      <div class="q-sub question"><span class="q-num">b.</span><span>Justifier que pour tout \(n \ge 1\) : \(g_{n+1} = 0{,}5\,g_n + 0{,}2\).</span></div>
-      <div class="question"><span class="q-num">5.</span><span>Pour tout \(n \ge 1\), on pose \(v_n = g_n - 0{,}4\).</span></div>
-      <div class="q-sub question"><span class="q-num">a.</span><span>Montrer que \((v_n)\) est géométrique de raison \(0{,}5\) et donner son premier terme.</span></div>
-      <div class="q-sub question"><span class="q-num">b.</span><span>Montrer que, pour tout \(n \ge 1\) : \(g_n = 0{,}1 \times 0{,}5^{n-1} + 0{,}4\).</span></div>
-      <div class="question"><span class="q-num">6.</span><span>Étudier les variations de la suite \((g_n)\).</span></div>
-      <div class="question"><span class="q-num">7.</span><span>Donner, en justifiant, la limite de \((g_n)\). Interpréter le résultat.</span></div>
-      <div class="question"><span class="q-num">8.</span><span>Déterminer par le calcul le plus petit entier \(n\) tel que \(g_n - 0{,}4 \le 0{,}001\).</span></div>
-      <div class="question"><span class="q-num">9.</span><span>Recopier et compléter la fonction Python suivante qui renvoie le plus petit rang \(n\) à partir duquel les termes de la suite \((g_n)\) sont tous inférieurs ou égaux à \(0{,}4 + e\), où \(e > 0\) est un réel.</span></div>
+      <div class="question"><span class="q-num">4.</span><span>Soit \(n \ge 1\).</span></div>
+      <div class="q-sub question"><span class="q-num">a.</span><span>Compléter l'arbre pour les \(n\)-ième et \((n+1)\)-ième parties.</span></div>
+      <div class="q-sub question"><span class="q-num">b.</span><span>Justifier : <span id="enonce-g-rec"></span></span></div>
+      <div class="question"><span class="q-num">5.</span><span id="enonce-g-vndef"></span></div>
+      <div class="q-sub question"><span class="q-num">a.</span><span>Montrer que \((v_n)\) est géométrique, donner raison et premier terme.</span></div>
+      <div class="q-sub question"><span class="q-num">b.</span><span>En déduire la forme close de \(g_n\).</span></div>
+      <div class="question"><span class="q-num">6.</span><span>Étudier les variations de \((g_n)\).</span></div>
+      <div class="question"><span class="q-num">7.</span><span>Limite de \((g_n)\) et interprétation.</span></div>
+      <div class="question"><span class="q-num">8.</span><span id="enonce-g-seuil"></span></div>
+      <div class="question"><span class="q-num">9.</span><span>Compléter la fonction Python <code>seuil(e)</code>.</span></div>
     </div>
-
     <div class="ced-wrap">
       <div class="ced-bar">
         <span class="ttl">Python — fonction seuil (à compléter)</span>
-        <button class="run" onclick="runCode('py-seuil-enonce', 'out-seuil-enonce')">▶ Exécuter</button>
-        <button onclick="dlCode('py-seuil-enonce', 'seuil.py')">⬇ .py</button>
+        <button class="run" onclick="runCode('py-seuil-enonce','out-seuil-enonce')">▶ Exécuter</button>
+        <button onclick="dlCode('py-seuil-enonce','seuil.py')">⬇ .py</button>
       </div>
-      <textarea class="ced" id="py-seuil-enonce" spellcheck="false">def seuil(e):
-    g = 0.5
-    n = 1
-    while ...:          # condition à compléter
-        g = 0.5 * g + 0.2
-        n = ...         # incrément à compléter
-    return n
-
-# Tester la fonction une fois complétée :
-# print(seuil(0.001))
-</textarea>
-      <div class="console idle" id="out-seuil-enonce">Complétez le code puis cliquez sur ▶ Exécuter</div>
+      <textarea class="ced" id="py-seuil-enonce" spellcheck="false"></textarea>
+      <div class="console idle" id="out-seuil-enonce">Complétez puis cliquez sur ▶ Exécuter</div>
     </div>
+  </div>
 
-  <!-- BOUTON CORRECTION -->
   <button class="corr-toggle-btn" onclick="toggleCorr('c1')">
     <span class="arrow">▶</span> Voir la correction complète
   </button>
 
-  <!-- CORRECTION -->
   <div class="correction" id="c1">
     <div class="correction-title">✦ Correction détaillée</div>
-
     <div class="step">
-      <div class="step-label">Question 1 — Probabilité conditionnelle p_{G₁}(D₂)</div>
-      <p>Si Léa gagne la partie 1 (\(G_1\)), elle perd la suivante dans les cas restants :</p>
-      <div class="math-block">\[p_{G_1}(D_2) = 1 - p_{G_1}(G_2) = 1 - 0{,}7 = 0{,}3\]</div>
-      <div class="result-box">p_{G₁}(D₂) = 0,3</div>
+      <div class="step-label">Question 1</div>
+      <div class="math-block" id="corr-g-pGD"></div>
+      <div class="result-box" id="corr-g-pGD-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 2 — Arbre de probabilités (2 premières parties)</div>
+      <div class="step-label">Question 2 — Arbre</div>
       <div class="tree-wrap">
-        <svg class="tree" viewBox="0 0 540 260" width="540" height="260" style="max-width:100%">
-          <!-- styles -->
-          <style>
-            .tl { font-family: 'Outfit', sans-serif; font-size: 13px; fill: #1a1714; }
-            .tp { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #2c6e8a; }
-            .tg { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; }
-            .tc-g { fill: #2d7a4e; }
-            .tc-d { fill: #c0392b; }
-          </style>
-          <!-- Root -->
-          <circle cx="50" cy="130" r="5" fill="#1a1714"/>
-          <!-- G1 branch -->
-          <line x1="55" y1="127" x2="175" y2="72" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="100" y="90" class="tp">0,5</text>
-          <text x="180" y="76" class="tl tg tc-g">G₁</text>
-          <!-- D1 branch -->
-          <line x1="55" y1="133" x2="175" y2="188" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="100" y="170" class="tp">0,5</text>
-          <text x="180" y="192" class="tl tg tc-d">D₁</text>
-          <!-- From G1: G2 -->
-          <line x1="205" y1="72" x2="340" y2="42" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="255" y="48" class="tp">0,7</text>
-          <text x="346" y="46" class="tl tg tc-g">G₂</text>
-          <!-- From G1: D2 -->
-          <line x1="205" y1="76" x2="340" y2="106" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="255" y="100" class="tp">0,3</text>
-          <text x="346" y="110" class="tl tg tc-d">D₂</text>
-          <!-- From D1: G2 -->
-          <line x1="205" y1="188" x2="340" y2="158" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="255" y="162" class="tp">0,2</text>
-          <text x="346" y="162" class="tl tg tc-g">G₂</text>
-          <!-- From D1: D2 -->
-          <line x1="205" y1="192" x2="340" y2="222" stroke="#1a1714" stroke-width="1.5"/>
-          <text x="255" y="218" class="tp">0,8</text>
-          <text x="346" y="226" class="tl tg tc-d">D₂</text>
-          <!-- Probas finales -->
-          <text x="400" y="46" class="tp" fill="#666">0,5×0,7 = 0,35</text>
-          <text x="400" y="110" class="tp" fill="#666">0,5×0,3 = 0,15</text>
-          <text x="400" y="162" class="tp" fill="#666">0,5×0,2 = 0,10</text>
-          <text x="400" y="226" class="tp" fill="#666">0,5×0,8 = 0,40</text>
-        </svg>
+        <svg id="tree-svg" class="tree" viewBox="0 0 590 260" width="590" height="260" style="max-width:100%"></svg>
       </div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 3 — Calcul de g₂</div>
-      <p>Par la formule des probabilités totales (\(G_1\) et \(D_1\) forment une partition) :</p>
-      <div class="math-block">\[g_2 = P(G_2) = P(G_1)\cdot p_{G_1}(G_2) + P(D_1)\cdot p_{D_1}(G_2)\]</div>
-      <div class="math-block">\[g_2 = 0{,}5 \times 0{,}7 + 0{,}5 \times 0{,}2 = 0{,}35 + 0{,}10 = 0{,}45\]</div>
-      <div class="result-box">g₂ = 0,45</div>
+      <div class="step-label">Question 3 — g₂</div>
+      <div class="math-block" id="corr-g-g2"></div>
+      <div class="result-box" id="corr-g-g2-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 4b — Justification de la relation de récurrence</div>
-      <p>Pour le rang général, par la formule des probabilités totales :</p>
-      <div class="math-block">\[g_{n+1} = g_n \cdot p_{G_n}(G_{n+1}) + (1-g_n) \cdot p_{D_n}(G_{n+1})\]</div>
-      <div class="math-block">\[g_{n+1} = 0{,}7\,g_n + 0{,}2(1-g_n) = 0{,}7g_n + 0{,}2 - 0{,}2g_n\]</div>
-      <div class="result-box">g_{n+1} = 0,5 g_n + 0,2 &nbsp; ✓</div>
+      <div class="step-label">Question 4b — Récurrence</div>
+      <div class="math-block" id="corr-g-rec-proof"></div>
+      <div class="result-box" id="corr-g-rec-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 5 — Suite auxiliaire (v_n)</div>
-      <p>On pose \(v_n = g_n - 0{,}4\). Alors :</p>
-      <div class="math-block">\[v_{n+1} = g_{n+1} - 0{,}4 = 0{,}5g_n + 0{,}2 - 0{,}4 = 0{,}5g_n - 0{,}2 = 0{,}5(g_n - 0{,}4) = 0{,}5\,v_n\]</div>
-      <p>\((v_n)\) est géométrique de raison \(q = 0{,}5\) et de premier terme \(v_1 = g_1 - 0{,}4 = 0{,}5 - 0{,}4 = 0{,}1\).</p>
-      <div class="math-block">\[v_n = 0{,}1 \times (0{,}5)^{n-1}\]</div>
-      <div class="math-block">\[g_n = v_n + 0{,}4 = 0{,}1 \times (0{,}5)^{n-1} + 0{,}4\]</div>
-      <div class="result-box">g_n = 0,1 × (0,5)^{n−1} + 0,4</div>
+      <div class="step-label">Question 5 — Suite (v_n)</div>
+      <div id="corr-g-vn-proof"></div>
+      <div class="math-block" id="corr-g-close"></div>
+      <div class="result-box" id="corr-g-close-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 6 — Variations de (g_n)</div>
-      <p>On a \(g_{n+1} - g_n = 0{,}5g_n + 0{,}2 - g_n = 0{,}2 - 0{,}5g_n\).</p>
-      <p>Or \(v_n = 0{,}1\times(0{,}5)^{n-1} > 0\) donc \(g_n > 0{,}4\) pour tout \(n\), d'où \(0{,}5g_n > 0{,}2\) et :</p>
-      <div class="math-block">\[g_{n+1} - g_n = 0{,}2 - 0{,}5g_n < 0\]</div>
+      <div class="step-label">Question 6 — Variations</div>
+      <div id="corr-g-var"></div>
       <div class="result-box">La suite (g_n) est strictement décroissante.</div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 7 — Limite de (g_n)</div>
-      <p>Puisque \(|0{,}5| < 1\), on a \((0{,}5)^{n-1} \to 0\) quand \(n \to +\infty\), donc :</p>
-      <div class="math-block">\[\lim_{n\to+\infty} g_n = 0{,}1 \times 0 + 0{,}4 = 0{,}4\]</div>
-      <div class="result-box">lim g_n = 0,4</div>
-      <p><strong>Interprétation :</strong> à long terme, quelle que soit l'issue de la première partie, Léa a une probabilité de <strong>40 %</strong> de gagner une partie.</p>
+      <div class="step-label">Question 7 — Limite</div>
+      <div id="corr-g-lim"></div>
+      <div class="result-box" id="corr-g-lim-result"></div>
+      <p id="corr-g-lim-interp"></p>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 8 — Calcul du seuil</div>
-      <p>On cherche le plus petit \(n\) tel que \(g_n - 0{,}4 \le 0{,}001\) :</p>
-      <div class="math-block">\[0{,}1 \times (0{,}5)^{n-1} \le 0{,}001 \implies (0{,}5)^{n-1} \le 0{,}01\]</div>
-      <div class="math-block">\[(n-1)\ln(0{,}5) \le \ln(0{,}01) \implies n-1 \ge \frac{\ln(0{,}01)}{\ln(0{,}5)} = \frac{-2\ln 10}{-\ln 2} \approx 6{,}64\]</div>
-      <div class="math-block">\[n \ge 7{,}64 \implies n_{\min} = 8\]</div>
-      <div class="result-box">Le plus petit entier n est n = 8.</div>
+      <div class="step-label">Question 8 — Seuil</div>
+      <div id="corr-g-seuil-calc"></div>
+      <div class="result-box" id="corr-g-seuil-result"></div>
     </div>
-
     <div class="step">
-      <div class="step-label">Question 9 — Complétion du programme Python</div>
+      <div class="step-label">Question 9 — Python (corrigé)</div>
       <div class="ced-wrap">
         <div class="ced-bar">
-          <span class="ttl">Python — fonction seuil (corrigée)</span>
-          <button class="run" onclick="runCode('py-seuil-corr', 'out-seuil-corr')">▶ Exécuter</button>
-          <button onclick="dlCode('py-seuil-corr', 'seuil_corrige.py')">⬇ .py</button>
+          <span class="ttl">Python — seuil (corrigé)</span>
+          <button class="run" onclick="runCode('py-seuil-corr','out-seuil-corr')">▶ Exécuter</button>
+          <button onclick="dlCode('py-seuil-corr','seuil_corrige.py')">⬇ .py</button>
         </div>
-        <textarea class="ced" id="py-seuil-corr" spellcheck="false">def seuil(e):
-    g = 0.5       # g_1 = 0.5
-    n = 1
-    while g - 0.4 > e:    # tant que g_n - 0.4 > e
-        g = 0.5 * g + 0.2  # calcul de g_{n+1}
-        n = n + 1
-    return n
-
-# Tests avec différentes précisions
-for e in [0.1, 0.01, 0.001, 0.0001]:
-    print("e =", e, "-> premier rang n =", seuil(e))
-</textarea>
+        <textarea class="ced" id="py-seuil-corr" spellcheck="false"></textarea>
         <div class="console idle" id="out-seuil-corr">Cliquez sur ▶ Exécuter</div>
       </div>
-      <p>La condition du <code>while</code> est <code>g - 0.4 &gt; e</code> et l'incrément est <code>n = n + 1</code>.</p>
     </div>
   </div>
 
-  <!-- OUTIL INTERACTIF -->
   <div class="interactive">
-    <div class="interactive-title">⚙ Explorateur interactif — suite (g_n) et seuil</div>
+    <div class="interactive-title">⚙ Explorateur — suite (g_n) et seuil</div>
     <div class="ctrl">
       <label>Termes :</label>
       <input type="number" id="g-n" value="15" min="5" max="30" style="width:65px" oninput="drawG()"/>
@@ -388,89 +327,165 @@ for e in [0.1, 0.01, 0.001, 0.0001]:
   </div>
 </section>
 
-<section class="exercise" id="contact" style="max-width:860px; margin:4rem auto 0; padding:0 1.5rem 5rem; scroll-margin-top:2rem;">
-  <div class="section-header">
-    <div class="ex-number">Contact</div>
-    <h2>Prendre rendez-vous</h2>
+<hr class="divider"/>
+
+<!-- ════════════════════════════════════
+     EXERCICE 3 — SUITE HOMOGRAPHIQUE
+     ════════════════════════════════════ -->
+<section class="exercise" id="exo3">
+  <div class="ex-number">Exercice 03</div>
+  <div class="ex-title">Suite définie par une fonction homographique</div>
+  <div class="ex-subtitle">Deux points fixes · Changement de variable · Suite géométrique · Forme close</div>
+
+  <div class="enonce">
+    <div class="enonce-title">Énoncé</div>
+    <div id="enonce-h-formula"></div>
+
+    <div class="part-title">Partie A — Points fixes et changement de variable</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1.</span><span id="enonce-h-ptsfixes"></span></div>
+      <div class="question"><span class="q-num">2.</span><span>Calculer \(u_1\) et \(v_0\) en fractions irréductibles.</span></div>
+      <div class="question"><span class="q-num">3.</span><span id="enonce-h-vndef"></span></div>
+      <div class="question"><span class="q-num">4.</span><span id="enonce-h-vrel"></span></div>
+      <div class="question"><span class="q-num">5.</span><span>En déduire l'expression de \(v_n\) en fonction de \(n\).</span></div>
+    </div>
+
+    <div class="part-title">Partie B — Forme close et convergence</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">6.</span><span>En utilisant \(v_n = \dfrac{u_n - \alpha}{u_n - \beta}\), exprimer \(u_n\) en fonction de \(v_n\), puis en fonction de \(n\).</span></div>
+      <div class="question"><span class="q-num">7.</span><span>Déterminer la limite de \((u_n)\) en justifiant.</span></div>
+      <div class="question"><span class="q-num">8.</span><span>Vérifier le résultat à l'aide du programme Python ci-dessous.</span></div>
+    </div>
+
+    <div class="ced-wrap">
+      <div class="ced-bar">
+        <span class="ttl">Python — forme close homographique (à compléter)</span>
+        <button class="run" onclick="runCode('py-homo','out-homo')">▶ Exécuter</button>
+        <button onclick="dlCode('py-homo','homo.py')">⬇ .py</button>
+      </div>
+      <textarea class="ced" id="py-homo" spellcheck="false"></textarea>
+      <div class="console idle" id="out-homo">Complétez u_close puis cliquez sur ▶ Exécuter</div>
+    </div>
   </div>
 
-  <div class="grid2" style="gap:1.25rem; margin-bottom:1.25rem;">
+  <button class="corr-toggle-btn" onclick="toggleCorr('ch')">
+    <span class="arrow">▶</span> Voir la correction complète
+  </button>
 
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiOvJG1wicFQY8EQufqy5YxGgTPSFPxdyb-OAtk95SUGxWFA/viewform"
-       target="_blank" rel="noopener" style="text-decoration:none; display:block;">
-      <div class="card" style="height:100%; border-left:3px solid var(--slate); cursor:pointer; transition:box-shadow 0.2s, transform 0.2s;"
-           onmouseover="this.style.boxShadow='0 4px 16px rgba(61,90,128,0.15)';this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.boxShadow='';this.style.transform=''">
-        <div style="font-size:1.5rem; margin-bottom:0.6rem;">📋</div>
-        <h3>Formulaire de retour</h3>
-        <p style="color:#666; font-size:0.86rem; margin-bottom:1rem;">Avis, erreur signalée ou question.</p>
-        <div style="text-align:center; margin:0.5rem 0 0.75rem;">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=3d5a80&bgcolor=faf7f2&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfiOvJG1wicFQY8EQufqy5YxGgTPSFPxdyb-OAtk95SUGxWFA%2Fviewform"
-               alt="QR Formulaire" style="border-radius:2px; border:1px solid var(--mist);">
+  <div class="correction" id="ch">
+    <div class="correction-title">✦ Correction détaillée</div>
+
+    <div class="part-title" style="font-size:.95rem;margin-top:.5rem">Partie A</div>
+
+    <div class="step">
+      <div class="step-label">Question 1 — Résolution de h(x) = x</div>
+      <div id="corr-h-ptsfixes"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Question 2 — u₁ et v₀</div>
+      <div class="math-block" id="corr-h-u1"></div>
+      <div class="result-box" id="corr-h-u1-result"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Questions 3 &amp; 4 — v_{n+1} = r·v_n</div>
+      <div id="corr-h-vn-proof"></div>
+      <div id="corr-h-geo"></div>
+      <div class="result-box" style="margin-top:.5rem">v_{n+1} = r·v_n &nbsp; ✓ &nbsp; (suite géométrique)</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Question 5 — Expression de v_n</div>
+      <div class="math-block" id="corr-h-vn-close"></div>
+    </div>
+
+    <div class="part-title" style="font-size:.95rem">Partie B</div>
+
+    <div class="step">
+      <div class="step-label">Question 6 — Forme close de u_n</div>
+      <div id="corr-h-close"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Question 7 — Limite</div>
+      <div id="corr-h-lim"></div>
+      <div class="result-box" id="corr-h-lim-result"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Question 8 — Python (corrigé)</div>
+      <div class="ced-wrap">
+        <div class="ced-bar">
+          <span class="ttl">Python — homographique (corrigé)</span>
+          <button class="run" onclick="runCode('py-homo-corr','out-homo-corr')">▶ Exécuter</button>
+          <button onclick="dlCode('py-homo-corr','homo_corrige.py')">⬇ .py</button>
         </div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.74rem; color:var(--slate); letter-spacing:0.06em;">Google Forms ↗</div>
+        <textarea class="ced" id="py-homo-corr" spellcheck="false"></textarea>
+        <div class="console idle" id="out-homo-corr">Cliquez sur ▶ Exécuter</div>
       </div>
-    </a>
-
-    <a href="https://calendly.com/didaskalosmanthanon/30min"
-       target="_blank" rel="noopener" style="text-decoration:none; display:block;">
-      <div class="card" style="height:100%; border-left:3px solid var(--sage); cursor:pointer; transition:box-shadow 0.2s, transform 0.2s;"
-           onmouseover="this.style.boxShadow='0 4px 16px rgba(74,124,89,0.15)';this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.boxShadow='';this.style.transform=''">
-        <div style="font-size:1.5rem; margin-bottom:0.6rem;">🎓</div>
-        <h3>Élèves — 30 min</h3>
-        <p style="color:#666; font-size:0.86rem; margin-bottom:1rem;">Créneau individuel de soutien.</p>
-        <div style="text-align:center; margin:0.5rem 0 0.75rem;">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=4a7c59&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2F30min"
-               alt="QR Élèves" style="border-radius:2px; border:1px solid var(--mist);">
-        </div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.74rem; color:var(--sage); letter-spacing:0.06em;">Calendly ↗</div>
-      </div>
-    </a>
-
-    <a href="https://calendly.com/didaskalosmanthanon/appel-pro-formation-ou-collaboration-45-min"
-       target="_blank" rel="noopener" style="text-decoration:none; display:block;">
-      <div class="card" style="height:100%; border-left:3px solid var(--gold); cursor:pointer; transition:box-shadow 0.2s, transform 0.2s;"
-           onmouseover="this.style.boxShadow='0 4px 16px rgba(184,134,11,0.15)';this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.boxShadow='';this.style.transform=''">
-        <div style="font-size:1.5rem; margin-bottom:0.6rem;">🏫</div>
-        <h3>Professeurs — 45 min</h3>
-        <p style="color:#666; font-size:0.86rem; margin-bottom:1rem;">Formation, collaboration pédagogique.</p>
-        <div style="text-align:center; margin:0.5rem 0 0.75rem;">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=b8860b&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2Fappel-pro-formation-ou-collaboration-45-min"
-               alt="QR Professeurs" style="border-radius:2px; border:1px solid var(--mist);">
-        </div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.74rem; color:var(--gold); letter-spacing:0.06em;">Calendly ↗</div>
-      </div>
-    </a>
-
-    <a href="https://calendly.com/didaskalosmanthanon/point-parents-presentation-de-l-outil-15-min"
-       target="_blank" rel="noopener" style="text-decoration:none; display:block;">
-      <div class="card" style="height:100%; border-left:3px solid var(--rust); cursor:pointer; transition:box-shadow 0.2s, transform 0.2s;"
-           onmouseover="this.style.boxShadow='0 4px 16px rgba(192,57,43,0.15)';this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.boxShadow='';this.style.transform=''">
-        <div style="font-size:1.5rem; margin-bottom:0.6rem;">👨‍👩‍👧</div>
-        <h3>Parents — 15 min</h3>
-        <p style="color:#666; font-size:0.86rem; margin-bottom:1rem;">Présentation de l'outil &amp; suivi.</p>
-        <div style="text-align:center; margin:0.5rem 0 0.75rem;">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=c0392b&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2Fpoint-parents-presentation-de-l-outil-15-min"
-               alt="QR Parents" style="border-radius:2px; border:1px solid var(--mist);">
-        </div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.74rem; color:var(--rust); letter-spacing:0.06em;">Calendly ↗</div>
-      </div>
-    </a>
-
+      <canvas id="canvas-h" height="220" style="margin-top:.8rem"></canvas>
+    </div>
   </div>
 
-  <p style="font-size:0.78rem; color:#888; font-family:'DM Mono',monospace; text-align:center; letter-spacing:0.04em;">
-    Scannez le QR code ou cliquez sur la carte pour ouvrir le lien.
-  </p>
+  <div class="interactive">
+    <div class="interactive-title">⚙ Explorateur — suite homographique (u_n)</div>
+    <div class="ctrl">
+      <label>\(u_0 =\)</label>
+      <input type="number" id="h-u0-val" value="4" step="0.5" min="-10" max="20" oninput="drawH()"/>
+      <label>Termes :</label>
+      <input type="number" id="h-n" value="12" min="4" max="40" style="width:65px" oninput="drawH()"/>
+    </div>
+    <canvas id="canvas-h-tool" height="200"></canvas>
+    <p class="ctrl-result" id="h-result"></p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     CONTACT
+     ════════════════════════════════════ -->
+<section class="exercise" id="contact" style="max-width:860px;margin:4rem auto 0;padding:0 1.5rem 5rem;scroll-margin-top:2rem;">
+  <div class="ex-number">Contact</div>
+  <h2 style="font-family:'Lora',serif;font-size:1.7rem;font-weight:700;margin-bottom:1.5rem">Prendre rendez-vous</h2>
+  <div class="grid2" style="gap:1.25rem;margin-bottom:1.25rem;">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiOvJG1wicFQY8EQufqy5YxGgTPSFPxdyb-OAtk95SUGxWFA/viewform" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div class="card" style="height:100%;border-left:3px solid #3d5a80;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(61,90,128,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">📋</div><h3>Formulaire de retour</h3>
+        <p style="color:#666;font-size:.86rem;margin-bottom:1rem">Avis, erreur signalée ou question.</p>
+        <div style="text-align:center;margin:.5rem 0 .75rem"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=3d5a80&bgcolor=faf7f2&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfiOvJG1wicFQY8EQufqy5YxGgTPSFPxdyb-OAtk95SUGxWFA%2Fviewform" alt="QR" style="border-radius:2px;border:1px solid #d4ccc0"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#3d5a80;letter-spacing:.06em">Google Forms ↗</div>
+      </div>
+    </a>
+    <a href="https://calendly.com/didaskalosmanthanon/30min" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div class="card" style="height:100%;border-left:3px solid #4a7c59;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(74,124,89,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">🎓</div><h3>Élèves — 30 min</h3>
+        <p style="color:#666;font-size:.86rem;margin-bottom:1rem">Créneau individuel de soutien.</p>
+        <div style="text-align:center;margin:.5rem 0 .75rem"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=4a7c59&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2F30min" alt="QR" style="border-radius:2px;border:1px solid #d4ccc0"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#4a7c59;letter-spacing:.06em">Calendly ↗</div>
+      </div>
+    </a>
+    <a href="https://calendly.com/didaskalosmanthanon/appel-pro-formation-ou-collaboration-45-min" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div class="card" style="height:100%;border-left:3px solid #b8860b;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(184,134,11,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">🏫</div><h3>Professeurs — 45 min</h3>
+        <p style="color:#666;font-size:.86rem;margin-bottom:1rem">Formation, collaboration pédagogique.</p>
+        <div style="text-align:center;margin:.5rem 0 .75rem"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=b8860b&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2Fappel-pro-formation-ou-collaboration-45-min" alt="QR" style="border-radius:2px;border:1px solid #d4ccc0"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#b8860b;letter-spacing:.06em">Calendly ↗</div>
+      </div>
+    </a>
+    <a href="https://calendly.com/didaskalosmanthanon/point-parents-presentation-de-l-outil-15-min" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div class="card" style="height:100%;border-left:3px solid #c0392b;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(192,57,43,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">👨‍👩‍👧</div><h3>Parents — 15 min</h3>
+        <p style="color:#666;font-size:.86rem;margin-bottom:1rem">Présentation de l'outil &amp; suivi.</p>
+        <div style="text-align:center;margin:.5rem 0 .75rem"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=c0392b&bgcolor=faf7f2&data=https%3A%2F%2Fcalendly.com%2Fdidaskalosmanthanon%2Fpoint-parents-presentation-de-l-outil-15-min" alt="QR" style="border-radius:2px;border:1px solid #d4ccc0"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#c0392b;letter-spacing:.06em">Calendly ↗</div>
+      </div>
+    </a>
+  </div>
+  <p style="font-size:.78rem;color:#888;font-family:'JetBrains Mono',monospace;text-align:center;letter-spacing:.04em">Scannez le QR code ou cliquez sur la carte.</p>
 </section>
 
 </main>
-
-<footer>Exercices inspirés du programme de Terminale · Mathématiques · Réalisé avec Claude</footer>
-
+<footer>Exercices générés aléatoirement · Programme de Terminale · Mathématiques · Réalisé avec Claude</footer>
 <script src="script.js"></script>
 </body>
 </html>
